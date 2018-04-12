@@ -154,19 +154,19 @@ type backupsRoot struct {
 
 // DropletCreateImage identifies an image for the create request. It prefers slug over ID.
 type DropletCreateImage struct {
-	ID   int
-	Slug string
+	ID   int    `json:"id,omitempty"`
+	Slug string `json:"slug,omitempty"`
 }
 
-// MarshalJSON returns either the slug or id of the image. It returns the id
-// if the slug is empty.
-func (d DropletCreateImage) MarshalJSON() ([]byte, error) {
-	if d.Slug != "" {
-		return json.Marshal(d.Slug)
-	}
+// // MarshalJSON returns either the slug or id of the image. It returns the id
+// // if the slug is empty.
+// func (d DropletCreateImage) MarshalJSON() ([]byte, error) {
+// 	if d.Slug != "" {
+// 		return json.Marshal(d.Slug)
+// 	}
 
-	return json.Marshal(d.ID)
-}
+// 	return json.Marshal(d.ID)
+// }
 
 // DropletCreateVolume identifies a volume to attach for the create request. It
 // prefers Name over ID,
